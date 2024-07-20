@@ -1,0 +1,80 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-image: url(background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+h1{
+    margin: 15px;
+    padding: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+#score{
+    margin: 15px;
+    padding: 10px;
+}
+.button {
+    border: 2px solid black;
+    border-radius: 100%;
+    font-size: large;
+    padding: 47px;
+    margin: 5px;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+#stone{
+    background-image: url(stone_final.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    padding: 47px;
+}
+#paper{
+   
+    background-image: url(paper_final.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    padding: 47px;
+}
+#scissors{
+    background-image: url(sciccors_final.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    padding: 47px;
+}
+#Reset{
+    background-image: url(reset.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 50px;
+    margin: 5px;
+}
+
+#stone.hov{
+    border: 4px white solid;
+}
+h2{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
