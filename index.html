@@ -5,29 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors with AI</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="Index.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <h1 >Rock Paper Scissors</h1>
 
-    <button class="button" id="stone" onclick=" 
+    <button class="button" id="Stone" onclick=" 
     let compuChoice = getCompuChoice();
-    let result=getResult('Paper',compuChoice);
+    let result=getResult('Stone',compuChoice);
     showResult(compuChoice,result)
     document.querySelector('#score').innerText= `Your Score is `+score;
    "></button>
     
-    <button class="button" id="paper" onclick="
+    <button class="button" id="Paper" onclick="
     compuChoice = getCompuChoice();
     result=getResult('Paper',compuChoice);
     showResult(compuChoice,result)
     document.querySelector('#score').innerText= `Your Score is `+score;"></button>
     
-    <button class="button" id="scissors" onclick="
+    <button class="button" id="Scissors" onclick="
     compuChoice = getCompuChoice();
-    result=getResult('Paper',compuChoice);
+    result=getResult('Scissors',compuChoice);
     showResult(compuChoice,result)
     document.querySelector('#score').innerText= `Your Score is `+score;"> </button>
 
@@ -60,14 +60,14 @@
 
         }
         
-        function getResult(userMove, computerMove){
+        function getResult(userMove, compuChoice){
             if (userMove ==='Paper'){
-                if (computerMove==='Stone'){
+                if (compuChoice ==='Stone'){
                     score=score+1;
                     score_1.Win++;
                     return 'User Won Balle Balle';
                 }
-                else if(computerMove===userMove){
+                else if(compuChoice===userMove){
                     score_1.Tie++;
                     return 'Its Tie Try again';
                 }
@@ -77,13 +77,13 @@
                 } 
             }
             else if(userMove==='Stone'){
-                if (computerMove==='Paper'){
+                if (compuChoice==='Scissors'){
                     score=score+1;
                     score_1.Win++;
                     
                     return 'User Won Balle Balle';
                 }
-                else if(computerMove===userMove){
+                else if(compuChoice===userMove){
                     score_1.Tie++;
                     return 'Its Tie Try again';
                 }
@@ -93,13 +93,13 @@
                 } 
             }
             else{
-                if (computerMove==='Stone'){
+                if (compuChoice==='Paper'){
                     score=score+1;
                     
                     score_1.Win++;
                     return 'User Won Balle Balle';
                 }
-                else if(computerMove===userMove){
+                else if(compuChoice===userMove){
                     score_1.Tie++;
                     return 'Its Tie Try again';
                 }
