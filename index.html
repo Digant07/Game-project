@@ -16,29 +16,48 @@
     let compuChoice = getCompuChoice();
     let result=getResult('Stone',compuChoice);
     showResult(compuChoice,result)
-    document.querySelector('#score').innerText= `Your Score is `+score;
+    document.querySelector('#score').innerText= `Your Score is `+ score.Win;
    "></button>
     
     <button class="button" id="Paper" onclick="
     compuChoice = getCompuChoice();
     result=getResult('Paper',compuChoice);
     showResult(compuChoice,result)
-    document.querySelector('#score').innerText= `Your Score is `+score;"></button>
+    document.querySelector('#score').innerText= `Your Score is `+ score.Win;"></button>
     
     <button class="button" id="Scissors" onclick="
     compuChoice = getCompuChoice();
     result=getResult('Scissors',compuChoice);
     showResult(compuChoice,result)
-    document.querySelector('#score').innerText= `Your Score is `+score;"> </button>
+    document.querySelector('#score').innerText= `Your Score is `+ score.Win;"> </button>
 
-    <h2 id="score"  > Your Score is </h2>
-    <button class="button" id ='Reset' onclick="reset_score();"></button>
+    <h2 id="score"  > Your Score is 0 </h2>
+    <button class="button" id ='Reset' onclick="resetScore(scoreStr); localStorage.clear();"></button>
     <script> 
-        let score_1={
-            Win: 0,
-            Lost : 0,
-            Tie : 0,
+        let scoreStr=localStorage.getItem('score');
+        let score={};
+        score = scoreStr ? JSON.parse(scoreStr):{
+                Win:0,
+                Lost:0,
+                Tie:0,
+            };
+   
+            
+        function resetScore(scoreStr){
+            localStorage.clear();
+            score.Win=0;
+            score.Lost=0;
+            score.Tie=0;
+            
+            
+            document.querySelector('#score').innerText= `Your Score is 0`;
+
         }
+        score.dispalayScore = function(){
+                return `No of Matches Won: ${score.Win}, Lost: ${score.Lost}, Tie: ${score.Tie}`;
+        };
+        document.querySelector('#score').innerText= `Your Score is `+ score.Win;
+        
         function getCompuChoice(){
             randomNum = Math.random() * 3;
    
@@ -55,66 +74,56 @@
         }
         
         function showResult(compuChoice,result){
-            console.log(score_1);
-            alert(`Computer chosen ${compuChoice} and ${result}`);
+            localStorage.setItem('score', JSON.stringify(score));
+            alert(`Computer chosen ${compuChoice} and ${result} 
+${score.dispalayScore()}`);
 
         }
         
         function getResult(userMove, compuChoice){
             if (userMove ==='Paper'){
                 if (compuChoice ==='Stone'){
-                    score=score+1;
-                    score_1.Win++;
+                    score.Win++;
                     return 'User Won Balle Balle';
                 }
                 else if(compuChoice===userMove){
-                    score_1.Tie++;
+                    score.Tie++;
                     return 'Its Tie Try again';
                 }
                 else{
-                    score_1.Lost++;
+                    score.Lost++;
                     return 'User Lost Try Again Bache';
                 } 
             }
             else if(userMove==='Stone'){
                 if (compuChoice==='Scissors'){
-                    score=score+1;
-                    score_1.Win++;
-                    
+                    score.Win++;
                     return 'User Won Balle Balle';
                 }
                 else if(compuChoice===userMove){
-                    score_1.Tie++;
+                    score.Tie++;
                     return 'Its Tie Try again';
                 }
                 else{
-                    score_1.Lost++;
+                    score.Lost++;
                     return 'User Lost Try Again Bache';
                 } 
             }
             else{
                 if (compuChoice==='Paper'){
-                    score=score+1;
-                    
-                    score_1.Win++;
+                    score.Win++;
                     return 'User Won Balle Balle';
                 }
                 else if(compuChoice===userMove){
-                    score_1.Tie++;
+                    score.Tie++;
                     return 'Its Tie Try again';
                 }
                 else{
-                    score_1.Lost++;
+                    score.Lost++;
                     return 'User Lost Try Again Bache';
             }
         }
     }
-    function reset_score() { 
-        score=0;
-        document.querySelector('#score').innerText= `Your Score is `+ score;
-    }
-    let score=0;
-    document.querySelector('#score').innerText= `Your Score is `+ score;
     </script>
 </body>
 
