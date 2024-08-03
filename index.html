@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,31 +7,38 @@
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <h1 >Rock Paper Scissors</h1>
+    <h1>Rock Paper Scissors</h1>
 
     <button class="button" id="Stone" onclick=" 
-    let compuChoice = getCompuChoice();
-    let result=getResult('Stone',compuChoice);
-    showResult(compuChoice,result)
-    document.querySelector('#score').innerText= `Your Score is `+ score.Win;
-   "></button>
+         userMove = 'Stone';
+         compuChoice = getCompuChoice();
+         result = getResult(userMove, compuChoice);
+        showResult(userMove, compuChoice, result);
+    "></button>
     
     <button class="button" id="Paper" onclick="
-    compuChoice = getCompuChoice();
-    result=getResult('Paper',compuChoice);
-    showResult(compuChoice,result)
-    document.querySelector('#score').innerText= `Your Score is `+ score.Win;"></button>
+         userMove = 'Paper';
+         compuChoice = getCompuChoice();
+         result = getResult(userMove, compuChoice);
+        showResult(userMove, compuChoice, result);
+    "></button>
     
     <button class="button" id="Scissors" onclick="
-    compuChoice = getCompuChoice();
-    result=getResult('Scissors',compuChoice);
-    showResult(compuChoice,result)
-    document.querySelector('#score').innerText= `Your Score is `+ score.Win;"> </button>
+        let userMove = 'Scissors';
+        let compuChoice = getCompuChoice();
+        let result = getResult(userMove, compuChoice);
+        showResult(userMove, compuChoice, result);
+    "></button>
 
-    <h2 id="score"  > Your Score is 0 </h2>
-    <button class="button" id ='Reset' onclick="resetScore(scoreStr); localStorage.clear();"></button>
+    <h2 id="userMove"></h2>
+    <h2 id="computerMove"></h2>
+    <h2 id="result"></h2>
+
+    <h2 id="score">Your Score <br> Win: 0, Lost: 0, Tie: 0 </h2>
+
+    <button class="button" id="Reset" onclick="resetScore(); localStorage.clear();"></button>
+
     <script> 
         let scoreStr=localStorage.getItem('score');
         let score={};
@@ -41,90 +47,92 @@
                 Lost:0,
                 Tie:0,
             };
-   
             
-        function resetScore(scoreStr){
-            localStorage.clear();
-            score.Win=0;
-            score.Lost=0;
-            score.Tie=0;
-            
-            
-            document.querySelector('#score').innerText= `Your Score is 0`;
-
-        }
-        score.dispalayScore = function(){
-                return `No of Matches Won: ${score.Win}, Lost: ${score.Lost}, Tie: ${score.Tie}`;
-        };
-        document.querySelector('#score').innerText= `Your Score is `+ score.Win;
+        document.querySelector('#score').innerText = `Your Score
+         Win: ${score.Win}   Lost: ${score.Lost}  Tie: ${score.Tie}`;
         
-        function getCompuChoice(){
-            randomNum = Math.random() * 3;
-   
-            if(randomNum > 0 && randomNum <=1){
+        
+        
+        function resetScore() {
+            localStorage.clear();
+            score.Win = 0;
+            score.Lost = 0;
+            score.Tie = 0;
+            
+            document.querySelector('#score').innerText = `Your Score
+            Win: ${score.Win}   Lost: ${score.Lost}  Tie: ${score.Tie}`;
+            
+            document.querySelector('#userMove').innerText = '';
+            
+            document.querySelector('#computerMove').innerText = '';
+            
+            document.querySelector('#result').innerText = '';
+        }
+  
+        function getCompuChoice() {
+            let randomNum = Math.random() * 3;
+            if (randomNum > 0 && randomNum <= 1) {
                 return 'Stone';
-            }
-            else if(randomNum>1 && randomNum <=2){
+            } else if (randomNum > 1 && randomNum <= 2) {
                 return 'Paper';
-            }
-            else {
+            } else {
                 return 'Scissors';
             }
-
         }
         
-        function showResult(compuChoice,result){
+        function showResult(userMove, compuChoice, result) {
             localStorage.setItem('score', JSON.stringify(score));
-            alert(`Computer chosen ${compuChoice} and ${result} 
-${score.dispalayScore()}`);
+            
+            document.querySelector('#score').innerText = `Your Score
+            Win: ${score.Win}   Lost: ${score.Lost}  Tie: ${score.Tie}`;
+            
+            document.querySelector('#userMove').innerText = `User chosen: ${userMove}`;
+            document.querySelector('#computerMove').innerText = `Computer chosen: ${compuChoice}`;
+            document.querySelector('#result').innerText = result;
+        }
 
+        function getResult(userMove, compuChoice) {
+            if (userMove === 'Paper') {
+                if (compuChoice === 'Stone') {
+                    score.Win++;
+                    return 'User Won Balle Balle';
+                } else if (compuChoice === userMove) {
+                    score.Tie++;
+                    return 'Its Tie Try again';
+                } else {
+                    score.Lost++;
+                    return 'User Lost Try Again Bache';
+                } 
+            } else if (userMove === 'Stone') {
+                if (compuChoice === 'Scissors') {
+                    score.Win++;
+                    return 'User Won Balle Balle';
+                } else if (compuChoice === userMove) {
+                    score.Tie++;
+                    return 'Its Tie Try again';
+                } else {
+                    score.Lost++;
+                    return 'User Lost Try Again Bache';
+                } 
+            } else {
+                if (compuChoice === 'Paper') {
+                    score.Win++;
+                    return 'User Won Balle Balle';
+                } else if (compuChoice === userMove) {
+                    score.Tie++;
+                    return 'Its Tie Try again';
+                } else {
+                    score.Lost++;
+                    return 'User Lost Try Again Bache';
+                }
+            }
         }
         
-        function getResult(userMove, compuChoice){
-            if (userMove ==='Paper'){
-                if (compuChoice ==='Stone'){
-                    score.Win++;
-                    return 'User Won Balle Balle';
-                }
-                else if(compuChoice===userMove){
-                    score.Tie++;
-                    return 'Its Tie Try again';
-                }
-                else{
-                    score.Lost++;
-                    return 'User Lost Try Again Bache';
-                } 
-            }
-            else if(userMove==='Stone'){
-                if (compuChoice==='Scissors'){
-                    score.Win++;
-                    return 'User Won Balle Balle';
-                }
-                else if(compuChoice===userMove){
-                    score.Tie++;
-                    return 'Its Tie Try again';
-                }
-                else{
-                    score.Lost++;
-                    return 'User Lost Try Again Bache';
-                } 
-            }
-            else{
-                if (compuChoice==='Paper'){
-                    score.Win++;
-                    return 'User Won Balle Balle';
-                }
-                else if(compuChoice===userMove){
-                    score.Tie++;
-                    return 'Its Tie Try again';
-                }
-                else{
-                    score.Lost++;
-                    return 'User Lost Try Again Bache';
-            }
-        }
-    }
+      
+
+
+
+
     </script>
 </body>
-
 </html>
